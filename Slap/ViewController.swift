@@ -39,36 +39,39 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        self.presentViewController(imagePicker, animated: true, completion: nil)
         
         
+        let actionSheet = UIAlertController(title: "Action Sheet", message: "Simple actionsheet", preferredStyle: UIAlertControllerStyle.ActionSheet)
         
-//        let actionSheet = UIAlertController(title: "Take a picture", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-//        
-//        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
-//            
-//            let cameraButton = UIAlertAction(title: "Take a picture", style: UIAlertActionStyle.Default, handler: { (actionSheet) -> Void in
-//                
-//                print("take photo")
-//                imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-//                self.presentViewController(imagePicker, animated: true, completion: nil)
-//                
-//            })
-//            
-//            actionSheet.addAction(cameraButton)
-//            
-//        }
-//        else {
-//            
-//            print("pick from photo library")
-//            
-//        }
+        let libButton = UIAlertAction(title: "Select from photo Library", style: UIAlertActionStyle.Default) { (libSelected) -> Void in
+            
+            imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            self.presentViewController(imagePicker, animated: true, completion: nil)
+        }
         
+        let camButton = UIAlertAction(title: "Take a picture", style: UIAlertActionStyle.Default) { (camSelected) -> Void in
+            
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+                
+                imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+                self.presentViewController(imagePicker, animated: true, completion: nil)
+            }
+            else {
+                
+                print("Camera not available")
+            }
+        }
         
+        let cancelButton = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default) { (cancelSelected) -> Void in
+            
+            print("Cancel selected")
+        }
         
+        actionSheet.addAction(libButton)
+        actionSheet.addAction(camButton)
+        actionSheet.addAction(cancelButton)
         
-        
+        self.presentViewController(actionSheet, animated: true, completion: nil)
         
     }
     
