@@ -30,8 +30,15 @@
                     </view>
                     <navigationItem key="navigationItem" title="SLAP ME!" id="Tmr-11-i43">
                         <barButtonItem key="leftBarButtonItem" title="Reset" id="3bj-eS-1VI"/>
-                        <barButtonItem key="rightBarButtonItem" title="Image" id="9fO-ef-GAi"/>
+                        <barButtonItem key="rightBarButtonItem" title="Image" id="9fO-ef-GAi">
+                            <connections>
+                                <action selector="imageBarButtonWasPressed:" destination="vXZ-lx-hvc" id="6rM-41-nKy"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="imageView" destination="3z9-zt-PMq" id="Btg-AW-Krq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
