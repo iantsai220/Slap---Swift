@@ -12,14 +12,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBOutlet weak var imageView: UIImageView!
     
-    let imagePicker = UIImagePickerController()
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        imagePicker.delegate = self
         
         
     }
@@ -28,18 +24,49 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        imageView.image = image
+        
+    }
 
     @IBAction func imageBarButtonWasPressed(sender: UIBarButtonItem) {
         
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
-            
-            let actionSheet = UIAlertController(title: "123", message: "456", preferredStyle: UIAlertControllerStyle.ActionSheet)
-            
-            
-            
-        }
-        
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
         imagePicker.allowsEditing = true
+        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        self.presentViewController(imagePicker, animated: true, completion: nil)
+        
+        
+        
+//        let actionSheet = UIAlertController(title: "Take a picture", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+//        
+//        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+//            
+//            let cameraButton = UIAlertAction(title: "Take a picture", style: UIAlertActionStyle.Default, handler: { (actionSheet) -> Void in
+//                
+//                print("take photo")
+//                imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+//                self.presentViewController(imagePicker, animated: true, completion: nil)
+//                
+//            })
+//            
+//            actionSheet.addAction(cameraButton)
+//            
+//        }
+//        else {
+//            
+//            print("pick from photo library")
+//            
+//        }
+        
+        
+        
         
         
         
